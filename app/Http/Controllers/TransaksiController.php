@@ -12,7 +12,8 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksi = transaksi::all();
+        return view('Transaksi.index', compact('transaksi'));
     }
 
     /**
@@ -20,7 +21,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('Transaksi.create');
     }
 
     /**
@@ -28,7 +29,16 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_barang' => 'required',
+            'jumlah' => 'required',
+            'total_harga' => 'required',
+        ]);
+
+        transaksi::create($request->all());
+
+        return redirect()->route('transaksi.index')
+            ->with('success', 'Transaksi created successfully.');
     }
 
     /**

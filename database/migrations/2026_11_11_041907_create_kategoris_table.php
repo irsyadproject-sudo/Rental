@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nama_kategori');
         });
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -24,4 +27,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('kategoris');
     }
+
+
 };
